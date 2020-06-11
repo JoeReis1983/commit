@@ -1,0 +1,204 @@
+<html>
+<title>
+        Calculadora
+</title>
+
+<head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet"
+                href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+                integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+                crossorigin="anonymous">
+        <link href="src/main/html/node_modules/bootstrap/dist/css/bootstrap.css"
+                rel="stylesheet">
+        <link href="estilos.css" rel="stylesheet">
+        <script type="text/javascript">
+                function calcular(id) {
+                        document.calc.result.value += id;
+                };
+                function calculate() {
+                        if (document.calc.result.value.indexOf('^') > 0) {
+
+                                y = document.calc.result.value;
+                                x = y.slice(y.indexOf('^') + 1);
+                                y = y.slice(0, y.indexOf('^'));
+                                document.calc.result.value = (Math.pow(y, x));
+                        }
+                        else {
+                                try {
+                                        var input = eval(document.calc.result.value);
+                                        document.calc.result.value = input;
+                                }
+                                catch (err) {
+                                        document.calc.result.value = "Error";
+                                }
+                        }
+                };
+                function raiz() {
+                        document.calc.result.value = (Math.sqrt(document.calc.result.value))
+                }
+
+                function historico() {
+                        window.open('http://localhost:8080/Calculadora/historico', 'self');
+                }
+
+
+
+
+        </script>
+        <script type="text/javascript" src="javascript.js"></script>
+</head>
+
+<body>
+        <div class="container text-center" id="calc">
+                <div id="bcalc" class="calcBG text-center">
+                        <div class="row">
+                        </div>
+                        <div class="row" id="result">
+                                <form name="calc">
+                                        <input type="text"
+                                                class="screen text-right"
+                                                name="result" readonly>
+                                </form>
+                        </div>
+                        <div id="buttons">
+                                <div class="row">
+
+                                        <button id="limpar" type="button"
+                                                class="btn btn-danger"
+                                                onclick="limparTela()">CE</button>
+                                        <button id="√" type="button"
+                                                class="btn btn-warning"
+                                                onclick="raiz(this.id)">√</button>
+                                        <button id="^" type="button"
+                                                class="btn btn-warning"
+                                                onclick="calcular(this.id)">^</button>
+                                        <button id="/" type="button"
+                                                class="btn btn-warning"
+                                                onclick="calcular(this.id)">÷</button>
+                                </div>
+                                <div class="row">
+                                        <button id="7" type="button"
+                                                class="btn btn-primary"
+                                                onclick="calcular(this.id)">7</button>
+                                        <button id="8" type="button"
+                                                class="btn btn-primary"
+                                                onclick="calcular(this.id)">8</button>
+                                        <button id="9" type="button"
+                                                class="btn btn-primary"
+                                                onclick="calcular(this.id)">9</button>
+                                        <button id="*" type="button"
+                                                class="btn btn-warning"
+                                                onclick="calcular(this.id)">x</button>
+                                </div>
+                                <div class="row">
+                                        <button id="4" type="button"
+                                                class="btn btn-primary"
+                                                onclick="calcular(this.id)">4</button>
+                                        <button id="5" type="button"
+                                                class="btn btn-primary"
+                                                onclick="calcular(this.id)">5</button>
+                                        <button id="6" type="button"
+                                                class="btn btn-primary"
+                                                onclick="calcular(this.id)">6</button>
+                                        <button id="-" type="button"
+                                                class="btn btn-warning"
+                                                onclick="calcular(this.id)">-</button>
+                                </div>
+                                <div class="row">
+                                        <button id="1" type="button"
+                                                class="btn btn-primary"
+                                                onclick="calcular(this.id)">1</button>
+                                        <button id="2" type="button"
+                                                class="btn btn-primary"
+                                                onclick="calcular(this.id)">2</button>
+                                        <button id="3" type="button"
+                                                class="btn btn-primary"
+                                                onclick="calcular(this.id)">3</button>
+                                        <button id="+" type="button"
+                                                class="btn btn-warning"
+                                                onclick="calcular(this.id)">+</button>
+                                </div>
+                                <div class="row">
+                                        <button id="." type="button"
+                                                class="btn btn-primary"
+                                                onclick="calcular(this.id)">.</button>
+                                        <button id="0" type="button"
+                                                class="btn btn-primary"
+                                                onclick="calcular(this.id)">0</button>
+
+                                        <button id="=" type="button"
+                                                class="btn btn-success"
+                                                onclick="calculate()">=</button>
+                                        <button id="limpar" type="button"
+                                                class="btn btn-danger"
+                                                onclick="historico()">H</button>
+
+                                </div>
+                        </div>
+                </div>
+        </div>
+</body>
+
+<style>
+        button {
+                height: 50px;
+                width: 50px;
+                margin: 10px 4px;
+        }
+
+        #limpar {
+
+                border: none;
+        }
+
+        #clear {
+
+                border: none;
+        }
+
+
+
+        .calcBG {
+                width: 250px;
+                padding: 20px;
+                margin-top: 50px;
+                margin-bottom: 50px;
+                margin: 25vh auto;
+        }
+
+        .screen {
+                height: 40px;
+                padding: 10px;
+                margin: 10px 2px;
+                font-size: 16px;
+                font-weight: bold;
+                background-color: whitesmoke;
+        }
+
+        small {
+                color: #fff;
+                font-weight: bold;
+        }
+
+        #bcalc {
+                border-radius: 25px;
+                background-color: black
+        }
+
+        #login {
+                margin-top: 250px;
+                background-color: black;
+                color: white;
+                padding: 50px;
+                font-size: 30px;
+                font-weight: bold;
+                border-radius: 25px;
+        }
+
+        #entrar {
+                width: 15vh;
+        }
+</style>
+
+</html>
